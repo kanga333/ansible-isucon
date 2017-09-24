@@ -8,8 +8,7 @@
     - copy: src=../files/nginx.conf dest=/etc/nginx/nginx.conf owner=root mode=644
       notify:
         - reload nginx
-    - copy: src=../files/nginx.php.conf dest=/etc/nginx/nginx.php.conf owner=root mode=644
-    - apt: name=mysql-server-5.6 state=present
+    - apt: name=mariadb-server-10.0 state=present
     - file: path=/var/run/mysqld state=directory owner=mysql mode=775
     - name: copy my.cnf
       copy: src=../files/my.cnf.restore dest=/etc/my.cnf owner=root mode=644
