@@ -2,7 +2,7 @@
 - hosts: imageservers
   gather_facts: no
   sudo: yes
-  sudo_user: isucon
+  sudo_user: root
   tasks:
     - git:
         repo=https://github.com/isucon/isucon5-qualify.git
@@ -19,6 +19,7 @@
         ./gen.rb gen_comments
         ./gen.rb gen_footprints
         ./check_testsets.rb
+        echo "grant all on *.* TO 'isucon'@'localhost'; flush privileges;" | mysql -u root
         touch /tmp/done_mysql
       args:
         chdir: /tmp/isucon5-qualify/webapp/script
